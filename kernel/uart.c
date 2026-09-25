@@ -89,3 +89,34 @@ void uartputc_sync(int c) {
   // if (panicking == 0)
     // pop_off();
 }
+
+// try to read one input character from the UART.
+// return -1 if none is waiting.
+static int uartgetc(void) {
+  // is input ready?
+  if (ReadReg(LSR) & LSR_RX_READY) {
+    return ReadReg(RHR);
+  } else {
+    return -1;
+  }
+}
+
+// handle a uart interrupt, raised because input has
+// arrived, or the uart is ready for more output, or
+// both. called from devintr().
+void uartintr(void) {
+  ReadReg(ISR); // acknowledge the interrupt
+
+  if (ReadReg(LSR) & LSR_TX_IDLE) {
+    // UART finished transmitting; wake up sending thread.
+    // wakeup(&tx_chan);
+  }
+
+  // read and process incoming characters, if any.
+  while (1) {
+    int c = uartgetc();
+    if (c == -1)
+      break;
+    consoleintr(c);
+  }
+}

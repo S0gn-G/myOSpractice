@@ -8,7 +8,7 @@ volatile static int started = 0;
 
 // start() jumps here in supervisor mode on all CPUs.
 void main() {
-  if (cpuid() == 0) {
+  // if (cpuid() == 0) {
     consoleinit();
     printkinit();
     printk("\n");
@@ -17,10 +17,10 @@ void main() {
     // kinit();            // physical page allocator
     // kvminit();          // create kernel page table
     // kvminithart();      // turn on paging
-    // procinit();         // process table
-    // trapinit();         // trap vectors
+    procinit();         // process table
+    trapinit();         // trap vectors
     // trapinithart();     // install kernel trap vector
-    // plicinit();         // set up interrupt controller
+    plicinit();         // set up interrupt controller
     // plicinithart();     // ask PLIC for device interrupts
     // binit();            // buffer cache
     // iinit();            // inode table
@@ -37,7 +37,7 @@ void main() {
     // kvminithart();  // turn on paging
     // trapinithart(); // install kernel trap vector
     // plicinithart(); // ask PLIC for device interrupts
-  }
+  // }
 
   // scheduler();
 }

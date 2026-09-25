@@ -118,6 +118,15 @@ int printk(char *fmt, ...) {
   return 0;
 }
 
+void panic(char *s) {
+  panicking = 1;
+  printk("panic: ");
+  printk("%s\n", s);
+  panicked = 1; // freeze uart output from other CPUs
+  for (;;)
+    ;
+}
+
 void printkinit(void) {
   // initlock(&pr.lock, "pr");
 }

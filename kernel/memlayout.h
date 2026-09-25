@@ -4,9 +4,9 @@
 // based on qemu's hw/riscv/virt.c:
 //
 // 00001000 -- boot ROM, provided by qemu
-// 02000000 -- CLINT
-// 0C000000 -- PLIC
-// 10000000 -- uart0
+// 02000000 -- CLINT, Core Local Interruptor
+// 0C000000 -- PLIC, Platform-Level Interrupt Controller
+// 10000000 -- uart0, Universal Asynchronous Receiver/Transmitter
 // 10001000 -- virtio disk
 // 80000000 -- qemu's boot ROM loads the kernel here,
 //             then jumps here.
