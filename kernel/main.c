@@ -14,8 +14,8 @@ void main() {
     printk("\n");
     printk("xv6 kernel is booting\n");
     printk("\n");
-    // kinit();            // physical page allocator
-    // kvminit();          // create kernel page table
+    kinit();            // physical page allocator
+    kvminit();          // create kernel page table
     // kvminithart();      // turn on paging
     procinit();         // process table
     trapinit();         // trap vectors
