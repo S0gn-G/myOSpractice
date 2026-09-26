@@ -16,12 +16,12 @@ void main() {
     printk("\n");
     kinit();            // physical page allocator
     kvminit();          // create kernel page table
-    // kvminithart();      // turn on paging
+    kvminithart();      // turn on paging
     procinit();         // process table
     trapinit();         // trap vectors
-    // trapinithart();     // install kernel trap vector
+    trapinithart();     // install kernel trap vector
     plicinit();         // set up interrupt controller
-    // plicinithart();     // ask PLIC for device interrupts
+    plicinithart();     // ask PLIC for device interrupts
     // binit();            // buffer cache
     // iinit();            // inode table
     // fileinit();         // file table
