@@ -4,8 +4,6 @@
 #include "riscv.h"
 #include "defs.h"
 
-volatile static int started = 0;
-
 // start() jumps here in supervisor mode on all CPUs.
 void main() {
   // if (cpuid() == 0) {
@@ -26,7 +24,7 @@ void main() {
     // iinit();            // inode table
     // fileinit();         // file table
     // virtio_disk_init(); // emulated hard disk
-    // userinit();         // first user process
+    userinit();         // first user process
 
     // __atomic_store_n(&started, 1, __ATOMIC_RELEASE);
   // } else {
@@ -39,5 +37,5 @@ void main() {
     // plicinithart(); // ask PLIC for device interrupts
   // }
 
-  // scheduler();
+  scheduler();
 }
